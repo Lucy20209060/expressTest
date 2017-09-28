@@ -1,0 +1,143 @@
+extends layout
+
+block scripts
+    script(src='http://code.jquery.com/jquery-3.2.1.min.js')
+
+block content
+
+    h1= title  
+    h1 #{title}
+
+    // 数据渲染
+    p Welcome to #{title}
+    
+    // 标签 与 文本
+    p 标签与文本
+
+    // id 默认div标签
+    #div1 大超哥#div1
+
+    // 添加多个class
+    #div2.div3.div4 添加多个class
+
+    // 使用（）添加属性 当一个值是 undefined 或者 null 属性 不 会被加上
+    input(name="user",class="input")
+
+    p(class="temP") 大超哥p class="temP" 
+
+    a(href="/users",title="跳转") Users
+
+    br
+
+    input(type="checkbox", checked=someValue)
+
+    br
+    
+    // 支持多行 逗号可加可不加
+    input(
+        type='checkbox',
+        name='agreement',
+        checked)
+
+    br
+
+    a(href='/user/' + friends) a链接动态添加参数 (href='/user/' + friends)
+    br
+    a(href='/user/#{friends}') a链接动态添加参数 (href='/user/\#{friends}')
+    
+    // 代码块
+    ul
+        li.list
+            a(href="javascript:;") 大超哥
+        li.list
+            a(href="javascript:;") 大超哥
+        li.list
+            a(href="javascript:;") 大超哥
+    
+    // 注释
+    #content
+        .block
+            input#bar.foo1.foo2
+    
+    // 渲染为 <p>foo bar baz rawr.....</p>
+    p
+        | foo bar baz
+        | rawr rawr
+        | super cool
+        | go jade go
+
+
+    label Username:
+        input(name='user')
+    
+    // 该注释会被输出
+    //- 该注释不会被输出
+
+    // 块注释 注释代码块
+    //
+        p.
+          foo asdf
+          asdf
+           asdfasdfaf
+           asdf
+          asd.
+    
+    p friendNum = 7
+    - friendNum = 7
+    case friendNum
+        when 0
+            p you have no friends
+        when 1
+            p you have a friend
+        default
+            p you have #{friendNum} friends
+
+    // 循环 遍历数组
+    ul
+        - var items = ["one", "two", "three","four"]
+        each item in items
+            li= item
+
+    // 循环 输出key值
+    ul
+        - var items = ["one", "two", "three","four"]
+        each item,i in items
+            li #{item}:#{i}
+
+    // 遍历对象
+    -obj = { foo1: 'bar',foo2: 'bar2' }
+    each val, key in obj
+        li #{key}: #{val}
+
+    // 条件语句
+    if friendNum == 7
+        ul
+            li #{friendNum}
+            li foo
+            li worked
+    else
+        p oh no! didnt work  
+
+
+    // 循环加条件 与 if else 前 加 - 相同
+    -var temObj1 = [{value:1,name:"lucy"},{value:2,name:"luchao"}]
+    for item in temObj1
+        if(item.value == 1)
+            p my name is #{item.name},哈哈哈
+        else
+            p my name is #{item.name},呵呵呵
+
+
+   
+
+    mixin list('lucy','lucy2')
+
+
+block footer
+    p#foot 底部
+
+
+    mixin list(name1,name2 = 'lucahao')
+        ul
+            li #{name1}
+            li #{name2}
