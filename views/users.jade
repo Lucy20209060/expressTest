@@ -2,11 +2,14 @@ extends layout/default
 
 block scripts
     script(src='http://code.jquery.com/jquery-3.2.1.min.js')
-
+    script(src='/javascripts/users.js')
+    
 block content
 
     h1= title  
     h1 #{title}
+
+    h2.btn 点击
 
     // 数据渲染
     p Welcome to #{title}
@@ -131,6 +134,9 @@ block content
    
 
     mixin list('lucy','lucy2')
+
+
+
 
 
 block footer
