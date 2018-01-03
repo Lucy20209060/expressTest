@@ -8,19 +8,16 @@
 // 删除目录与文件          rmdir unlink
 const fs = require('fs')
 
-// 写入内容
-fs.writeFile('logs/hello.js','\/\/文件写入和追加内容 ~ \nconsole.log(`文件写入成功...`)\n',(error) => {
+// 文件读取
+fs.readFile('logs/hello.js','utf8',(error,data) => {
     if(error){
         console.log(error)
     }else{
-        console.log('成功写入文件')
+        // console.log(data.toString())
+        console.log(data)
     }
 })
-// 追加内容
-fs.appendFile('logs/hello.js','console.log(`成功追加内容...`)\n',(error) => {
-    if(error){
-        console.log(error)
-    }else{
-        console.log('成功追加内容')
-    }
-})
+
+// //文件写入和追加内容 ~
+// console.log(`文件写入成功...`)
+// console.log(`成功追加内容...`)
