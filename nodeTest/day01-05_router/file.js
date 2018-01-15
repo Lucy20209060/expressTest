@@ -3,8 +3,9 @@ var fs = require('fs')
 module.exports = {
     readImg:function(file,res){
         fs.readFile(file,'binary',function(err,data){
-            if(err) throw err;
+            // if (err) throw err
             res.writeHead(200,{'Content-Type':'image/jpeg'})
+            console.log(data)
             res.write(data,'binary')
             res.end()
         })
