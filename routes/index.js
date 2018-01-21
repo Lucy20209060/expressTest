@@ -7,8 +7,8 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET users page. */
-router.get('/users', function(req, res, next) {
-  res.render('users', { title: 'usersPage',friends:1 });
-});
+// router.get('/users', function(req, res, next) {
+//   res.render('users', { title: 'usersPage',friends:1 });
+// });
 
 module.exports = router;
