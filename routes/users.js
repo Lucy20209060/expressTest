@@ -30,14 +30,15 @@ router.get('/ab*ut',function(req,res,next){
 router.get('/productDet', function (req, res, next) {
     let productId = req.query.productId
 
-    if(productId === undefined){
-        res.json({
-            status: 1,
-            msg: 'suc',
-            result: productId,
-            success:false,
-            msg:'没有商品ID'
-        })
+    if(productId === undefined || productId === ''){
+        res.json(
+            Object.assign(
+                {
+                    msg:'商品ID为空'
+                },
+                ERROR
+            )
+        )
     }else{
         res.json(
             Object.assign(
