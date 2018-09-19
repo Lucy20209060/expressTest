@@ -29,12 +29,11 @@ router.get('/ab*ut',function(req,res,next){
 // 商品信息
 router.get('/productDet', function (req, res, next) {
     let productId = req.query.productId
-
-    if(productId === undefined || productId === ''){
+		if(productId === undefined || productId === '' || Number(productId) === NaN){
         res.json(
             Object.assign(
                 {
-                    msg:'商品ID为空'
+                    msg:'商品ID有误'
                 },
                 ERROR
             )
