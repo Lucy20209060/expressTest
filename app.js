@@ -4,15 +4,30 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+const fs = require("fs");
 var app = express();
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 // var login = require('./routes/login');
 app.use('/', index);
-app.use('/users', users);
+// app.use('/users', users);
 // app.use('/login', login);
+
+fs.readdirSync("./routes/").reverse().forEach(file => {
+  
+  let route =
+      "/" +
+      file
+        .replace(/\.js$/i, "")
+        .replace(/_/g, "/")
+        .replace(/[A-Z]/g, a => {
+          return "/" + a.toLowerCase();
+        });
+  app.use(route, require(`./routes${route}`));
+
+  console.log(route)
+})
 
 
 // view engine setup
