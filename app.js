@@ -1,14 +1,14 @@
-var express = require('express');
 var path = require('path');
+const fs = require("fs");
+var express = require('express');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-const fs = require("fs");
 var app = express();
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/users');
 // var login = require('./routes/login');
 app.use('/', index);
 // app.use('/users', users);
@@ -20,7 +20,6 @@ fs.readdirSync("./routes/").reverse().forEach(file => {
       "/" +
       file
         .replace(/\.js$/i, "")
-        .replace(/_/g, "/")
         .replace(/[A-Z]/g, a => {
           return "/" + a.toLowerCase();
         });
