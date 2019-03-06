@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var dbConfig = require('../db/dbConfig');
+var isPositiveInteger = require('../utils/isPositiveInteger')
+
 
 // 使用DBConfig.js的配置信息创建一个MySQL连接池
 var pool = mysql.createPool( dbConfig.mysql );
@@ -26,6 +28,15 @@ router.get('/detail/:id', function(req, res, next) {
         const id = req.params.id;
         const sql = `select * from productDetail where productId=${id}`;
 
+        // id格式校验
+        if(!isPositiveInteger(id)){
+            res.json(Object.assign({
+                data: null,
+                ...dbConfig.ERROR,
+                msg: '商品id格式错误'
+            }))
+            return
+        }
         connection.query(sql, function(err, result) {
             if(result.length === 0){
                 res.json(Object.assign({

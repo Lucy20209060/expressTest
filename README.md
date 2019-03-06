@@ -1,6 +1,11 @@
 # expressTest
 
+项目启动
 npm start
+
+
+实现热更新
+nodemon app
 
 localhost:3002
 
