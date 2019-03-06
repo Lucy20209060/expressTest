@@ -7,25 +7,26 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 
-var index = require('./routes/index');
-// var users = require('./routes/users');
-// var login = require('./routes/login');
-app.use('/', index);
-// app.use('/users', users);
-// app.use('/login', login);
+//设置允许跨域访问该服务.
+app.all('*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Methods', '*');
+  res.header('Content-Type', 'application/json;charset=utf-8');
+  next();
+});
 
-fs.readdirSync("./routes/").reverse().forEach(file => {
-  
-  let route =
-      "/" +
-      file
-        .replace(/\.js$/i, "")
-        .replace(/[A-Z]/g, a => {
-          return "/" + a.toLowerCase();
-        });
-  app.use(route, require(`./routes${route}`));
-
-  console.log(route)
+fs.readdirSync("./routes/").reverse().forEach(file => {  
+  let route = "/" + file.replace(/\.js$/i, "").replace(/[A-Z]/g, a => { return "/" + a.toLowerCase(); });
+  if(route === '/index')route = '/';
+  /**
+   * route
+   * -------
+   * /
+   * /users
+   * /menu
+   */
+  app.use('/rpa'+route, require(`./routes${route}`));
 })
 
 

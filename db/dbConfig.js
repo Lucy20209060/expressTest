@@ -5,5 +5,15 @@ module.exports = {
         user: 'root',
         password: '12345678',
         database: 'python_test'
+    },
+    SUCCESS: {
+        status:0,
+        success:true,
+        msg: 'success'
+    },
+    ERROR: {
+        status:1,
+        success:false,
+        msg: 'error'
     }
 }
