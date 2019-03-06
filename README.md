@@ -7,6 +7,9 @@ npm start
 实现热更新
 nodemon app
 
+或者
+npm run dev
+
 localhost:3002
 
 
