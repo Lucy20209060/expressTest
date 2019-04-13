@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var dbConfig = require('../db/dbConfig');
 
 // 使用DBConfig.js的配置信息创建一个MySQL连接池
-var pool = mysql.createPool( dbConfig.mysql );
+var pool = mysql.createPool( dbConfig.mysql);
 
 router.get('/list', function(req, res, next) {
     pool.getConnection(function(err, connection) {

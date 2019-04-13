@@ -26,9 +26,8 @@ fs.readdirSync("./routes/").reverse().forEach(file => {
    * /users
    * /menu
    */
-  app.use('/rpa'+route, require(`./routes${route}`));
+  app.use(route, require(`./routes${route}`));
 })
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
